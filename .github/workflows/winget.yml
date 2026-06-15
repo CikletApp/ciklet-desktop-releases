@@ -1,0 +1,15 @@
+name: Publish to Winget
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    runs-on: windows-latest
+    steps:
+      - name: Submit to Winget
+        uses: vedantmg/winget-releaser@v2
+        with:
+          identifier: DokimorMedia.Ciklet
+          installers-regex: '\.exe$'
+          token: ${{ secrets.WINGET_TOKEN }}
